@@ -1,0 +1,10 @@
+# netlify.toml
+[build]
+  functions = "functions"    # folder for serverless functions
+  publish = "."              # folder to publish (we don’t need static HTML)
+
+[build.environment]
+  NODE_VERSION = "18"        # optional, ensure modern Node
+
+[dev]
+  functions = "functions"
