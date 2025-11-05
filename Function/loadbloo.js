@@ -1,14 +1,22 @@
-// functions/loadBloo.js
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
-export async function handler() {
-  const filePath = path.join(process.cwd(), 'Bloo.js');
-  const code = fs.readFileSync(filePath, 'utf8');
-
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'application/javascript' },
-    body: code
-  };
-}
+exports.handler = async function(event, context) {
+  try {
+    const filePath = path.join(__dirname, 'Bloo.js'); // inside functions folder
+    const code = fs.readFileSync(filePath, 'utf8');
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/javascript',
+        'Cache-Control': 'no-cache'
+      },
+      body: code
+    };
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: 'Error loading Bloo.js: ' + err.message
+    };
+  }
+};
