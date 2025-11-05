@@ -1,0 +1,6 @@
+[build]
+  functions = "functions"   # folder containing loadBloo.js
+  publish = "."             # we don't need static HTML
+
+[build.environment]
+  NODE_VERSION = "18"       # ensure modern Node
